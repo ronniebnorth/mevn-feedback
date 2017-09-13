@@ -111,7 +111,9 @@ export default {
         email: this.email,
         message: this.message
       })
-      this.fetchFeedbacks()
+      this.fetchFeedbacks();
+      this.email = "";
+      this.message = "";
     },
     async fetchUsers () {
       const response = await AuthenticationService.fetchUsers()
