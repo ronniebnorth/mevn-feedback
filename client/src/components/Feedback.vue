@@ -1,22 +1,23 @@
 <template>
   <div>
     <h1>Post Feedback</h1>
-    <select
-      name="email"
-      v-model="email">
-      <option value="" selected disabled hidden>Please select</option>
-      <option value="raman.amatya@cloudfactory.com">Raman Amatya</option>
-      <option value="aneeta.sharma@cloudfactory.com">Aneeta Sharma</option>
-      <option value="anish.duwal@cloudfactory.com">Anish Duwal</option>
-      <option value="trishna.shrestha@cloudfactory.com">Trishna Shrestha</option>
-      <option value="prakash.regmi@cloudfactory.com">Prakash Regmi</option>
-    </select><br />
-    <textarea
-      name="message"
-      v-model="message"
-      placeholder="message" /><br />
-    <button
-      @click="submitMessage">Submit</button>
+    <div>
+      <select
+        name="email"
+        v-model="email">
+        <option value="" selected disabled hidden>Please select</option>
+        <option v-for="user in users">{{ user.fullname }}</option>
+      </select><br />
+      <textarea
+        name="message"
+        v-model="message"
+        placeholder="message" /><br />
+      <button
+        @click="submitMessage">Submit</button>
+    </div>
+    <div>
+      <h1>Feedbacks</h1>
+    </div>
   </div>
 </template>
 
@@ -27,8 +28,15 @@ export default {
   data () {
     return {
       email: "",
-      message: ""
+      message: "",
+      users: [
+        { "fullname": "Aneeta Sharma", "email": "get.aneeta@gmail.com" }
+      ],
+      feedbacks: []
     }
+  },
+  created () {
+    this.fetchUsers();
   },
   methods: {
     async submitMessage () {
@@ -36,7 +44,12 @@ export default {
         email: this.email,
         message: this.message
       })
-      console.log(response.data)
+      const response = await AuthenticationService.fetchUsers()
+      this.feedbacks = response.data.users
+    },
+    async fetchUsers () {
+      const response = await AuthenticationService.fetchUsers()
+      this.users = response.data.users
     }
   }
 }

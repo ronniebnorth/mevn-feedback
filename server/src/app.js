@@ -47,14 +47,16 @@ app.post('/feedback_message', (req, res) => {
 })
 
 app.get('/users', (req, res) => {
-	User.find({}, 'email fullname', function (err, users) {
-		console.log(users);
-	  if (err) return handleError(err);
+	// res.send({
+	// 	message: `Hello ${req.body.email}! your user was registered! Have fun`
+	// })
+	User.find({}, 'email fullname', function (error, users) {
+	  if (error) { console.error(error); }
 	  res.send({
 			users: users
 		})
 	})
-});
+})
 
 app.post('/register', (req, res) => {
 	var db = req.db;
