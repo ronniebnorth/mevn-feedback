@@ -102,6 +102,11 @@ export default {
   },
   methods: {
     async submitMessage () {
+      this.$swal(
+        'Good job!',
+        `Your feedback has been sent to ${this.email}!`,
+        'success'
+      )
       const response = await AuthenticationService.feedbackMessage({
         email: this.email,
         message: this.message
