@@ -11,6 +11,10 @@ export default {
 
 	fetchUsers () {
 		return Api().get('users')
+	},
+
+	fetchFeedbacks () {
+		return Api().get('feedbacks')
 	}
 }
 

@@ -47,15 +47,21 @@ app.post('/feedback_message', (req, res) => {
 })
 
 app.get('/users', (req, res) => {
-	// res.send({
-	// 	message: `Hello ${req.body.email}! your user was registered! Have fun`
-	// })
 	User.find({}, 'email fullname', function (error, users) {
 	  if (error) { console.error(error); }
 	  res.send({
 			users: users
 		})
 	})
+})
+
+app.get('/feedbacks', (req, res) => {
+	Feedback.find({}, 'email message', function (error, feedbacks) {
+	  if (error) { console.error(error); }
+	  res.send({
+			feedbacks: feedbacks
+		})
+	}).sort({_id:-1})
 })
 
 app.post('/register', (req, res) => {

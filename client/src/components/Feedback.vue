@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Post Feedback</h1>
-    <div>
+    <div style="float: left; width: 50%">
+      <h1>Post Feedback</h1>
       <select
         name="email"
         v-model="email">
@@ -15,8 +15,14 @@
       <button
         @click="submitMessage">Submit</button>
     </div>
-    <div>
+    <div style="float: right;  width: 50%; height: 575px; overflow: scroll; background: #f5f5f5; position: fixed; right: 0">
       <h1>Feedbacks</h1>
+      <div v-for="feedback in feedbacks">
+        <p>
+          <span><b>{{ feedback.email }}</b></span><br />
+          <span>{{ feedback.message }}</span>
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -32,11 +38,14 @@ export default {
       users: [
         { "fullname": "Aneeta Sharma", "email": "get.aneeta@gmail.com" }
       ],
-      feedbacks: []
+      feedbacks: [
+        { "message": "asd asd aaa a bbba", "email": "get.aneeta@gmail.com" }
+      ]
     }
   },
   created () {
     this.fetchUsers();
+    this.fetchFeedbacks();
   },
   methods: {
     async submitMessage () {
@@ -44,12 +53,15 @@ export default {
         email: this.email,
         message: this.message
       })
-      const response = await AuthenticationService.fetchUsers()
-      this.feedbacks = response.data.users
+      this.fetchFeedbacks()
     },
     async fetchUsers () {
       const response = await AuthenticationService.fetchUsers()
       this.users = response.data.users
+    },
+    async fetchFeedbacks () {
+      const feedback_response = await AuthenticationService.fetchFeedbacks()
+      this.feedbacks = feedback_response.data.feedbacks
     }
   }
 }
