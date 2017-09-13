@@ -7,6 +7,10 @@ export default {
 
 	feedbackMessage (credentials) {
 		return Api().post('feedback_message', credentials)
+	},
+
+	fetchUsers () {
+		return Api().get('users')
 	}
 }
 

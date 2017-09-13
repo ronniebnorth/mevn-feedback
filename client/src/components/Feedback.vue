@@ -27,14 +27,14 @@ export default {
   data () {
     return {
       email: "",
-      feedback: ""
+      message: ""
     }
   },
   methods: {
     async submitMessage () {
       const response = await AuthenticationService.feedbackMessage({
         email: this.email,
-        feedback: this.feedback
+        message: this.message
       })
       console.log(response.data)
     }

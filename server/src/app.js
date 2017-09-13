@@ -39,6 +39,16 @@ app.post('/feedback_message', (req, res) => {
 	});
 })
 
+app.get('/users', (req, res) => {
+	User.find({}, 'email fullname', function (err, users) {
+		console.log(users);
+	  if (err) return handleError(err);
+	  res.send({
+			users: users
+		})
+	})
+});
+
 app.post('/register', (req, res) => {
 	var db = req.db;
 	var email = req.body.email;
