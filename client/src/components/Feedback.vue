@@ -89,10 +89,10 @@ export default {
       email: "",
       message: "",
       users: [
-        { "fullname": "Aneeta Sharma", "email": "get.aneeta@gmail.com" }
+        { "fullname": "Aneeta Sharma", "email": "aneeta.sharma@cloudfactory.com" }
       ],
       feedbacks: [
-        { "message": "asd asd aaa a bbba", "email": "get.aneeta@gmail.com" }
+        { "message": "CloudFactory has met and exceeded our performance targets in velocity, quality and ramp time", email: "aneeta.sharma@cloudfactory.com" }
       ]
     }
   },
