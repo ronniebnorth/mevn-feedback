@@ -1,12 +1,18 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
 const cors = require('cors')
 const morgan = require('morgan')
+const flash = require('express-flash')
 
 const app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
+app.use(cookieParser('keyboard cat'));
+app.use(session({ cookie: { maxAge: 60000 }}));
+app.use(flash());
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/tab-tracker');
@@ -33,6 +39,7 @@ app.post('/feedback_message', (req, res) => {
 		if (error) {
 		  console.error(error);
 		}
+		req.flash('info', 'Welcome');
 		res.send({
 			message: `Hello ${req.body.email}! your feedback has been posted! Have fun`
 		})
