@@ -15,7 +15,7 @@ app.use(session({ cookie: { maxAge: 60000 }}));
 app.use(flash());
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/tab-tracker');
+mongoose.connect('mongodb://localhost:27017/mevn-feedback');
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error"));
 db.once("open", function(callback){
