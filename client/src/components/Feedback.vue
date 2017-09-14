@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div>
+      <!-- <h1 v-if="user">Hello, {{user.fullname}}</h1>
+      <h1 v-else>Welcome! Please log in.</h1> -->
+      <a href="/auth/google">Login with Google</a>
+    </div>
     <div class="leftPanel">
       <h1>Post Feedback</h1>
       <div class="formWrapper">
